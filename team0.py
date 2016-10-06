@@ -1,4 +1,5 @@
 ####
+# Team Members: Mr. Niemitalo and .... only me.
 # Each team's file must define four tokens:
 #     team_name: a string
 #     strategy_name: a string
@@ -6,9 +7,9 @@
 #     move: A function that returns 'c' or 'b'
 ####
 
-team_name = 'The name the team gives to itself' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
+team_name = '0 Nolan & Tim' # Only 10 chars displayed.
+strategy_name = 'test the waters '
+strategy_description = 'tit for tat but if they colude 5 times then betrays then it checks if they are running tit for tat and will either colode with a tit for tat or betray every thing else  '
     
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
@@ -17,18 +18,30 @@ def move(my_history, their_history, my_score, their_score):
     Make my move.
     Returns 'c' or 'b'. 
     '''
-
-    # my_history: a string with one letter (c or b) per round that has been played with this opponent.
-    # their_history: a string of the same length as history, possibly empty. 
-    # The first round between these two players is my_history[0] and their_history[0].
-    # The most recent round is my_history[-1] and their_history[-1].
+    their_history = their_history.lower()
+    if len(my_history)==0: #first move colude
+        return 'c'
+    elif my_history[-4:] == 'ccbc' and their_history [-3:]== 'ccb':# if they run tit for tat the colude
+        return 'c'
     
-    # Analyze my_history and their_history and/or my_score and their_score.
-    # Decide whether to return 'c' or 'b'.
+    elif their_history [-1:]== 'b': #tit for Tat
+        return 'b'
+        return 'b'
     
-    return 'c'
-
+    elif their_history [-5:]== 'ccccc':# test the waters, if they colude 5 time betray
+        #return 'b'
+        if my_history [-1]== 'b':# test the waters, if they colude 5 time betray then couludes again
+            return 'c'
+        else:
+            return 'b'
+   
+    elif  their_history [-5:]== 'cbcbc': # betray if they alternate
     
+        return 'b'
+    
+    else:
+        return 'c'
+     
 def test_move(my_history, their_history, my_score, their_score, result):
     '''calls move(my_history, their_history, my_score, their_score)
     from this module. Prints error if return value != result.
