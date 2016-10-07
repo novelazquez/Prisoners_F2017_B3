@@ -26,6 +26,7 @@ def move(my_history, their_history, my_score, their_score):
     
     elif their_history [-1:]== 'b': #tit for Tat
         return 'b'
+    elif their_history.count('b')==19:
         return 'b'
     
     elif their_history [-5:]== 'ccccc':# test the waters, if they colude 5 time betray
